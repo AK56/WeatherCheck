@@ -1,0 +1,7 @@
+<h2> Welcome to WeatherCheck</h2>
+<%= form_tag("/search", method: "get", remote: true) do %>
+  <%= label_tag(:zipcode, "Enter your zipcode") %>
+  <%= text_field_tag(:zipcode, @zipcode) %>
+  <%= submit_tag("Check Weather") %>
+<% end %>
+</br>

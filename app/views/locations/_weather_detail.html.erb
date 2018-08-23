@@ -1,0 +1,16 @@
+<div id="location_detail">
+	<% if @location.weather_data["cod"] == 200 %>
+		<div class="location_weather">
+			<div id="location_name">
+				<h3>Weather in <%= @location.weather_data["name"] %>, US:</h3>
+			</div>
+			<div id="current_temp">
+				<label>Current Temparature: <%= @location.weather_data["main"]["temp"].round %>&#8457;</label></br>
+				<label>Minimum temp: <%= @location.weather_data["main"]["temp_min"].round %>&#8457;</label></br>
+				<label>Maximum temp: <%= @location.weather_data["main"]["temp"].round %>&#8457;</label></br>
+			</div>
+		</div>
+	<% else %>
+		<h4><%= @location.weather_data["message"] %></h4>
+	<% end %>
+</div>
