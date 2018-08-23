@@ -2,14 +2,11 @@ class LocationsController < ApplicationController
 	
 	def lookup
 		#Gets JSON response back
-		puts params.inspect
+		@location = Location.new
 		unless params[:zipcode].blank? 
 			@zipcode = location_params[:zipcode]
-			@location = Location.find_or_create_by(zipcode: @zipcode.to_i)
-			@location.weather_data = @location.build_weather
-			@location.save!
-		else
-			@location = Location.new
+			@from_cache = Rails.cache.read("weather_at_#{@zipcode}")
+			@location = @location.get_or_build_location_weather(@zipcode.to_i)
 		end
 	end
 	

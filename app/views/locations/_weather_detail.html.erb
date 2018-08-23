@@ -2,12 +2,18 @@
 	<% if @location.weather_data["cod"] == 200 %>
 		<div class="location_weather">
 			<div id="location_name">
-				<h3>Weather in <%= @location.weather_data["name"] %>, US:</h3>
+				<h3>Weather around <%= @location.weather_data["name"] %>, US:
+					<% if @from_cache %>
+					<span>---->Cached Results</span>
+				<% end %>
+				</h3>
 			</div>
 			<div id="current_temp">
 				<label>Current Temparature: <%= @location.weather_data["main"]["temp"].round %>&#8457;</label></br>
 				<label>Minimum temp: <%= @location.weather_data["main"]["temp_min"].round %>&#8457;</label></br>
 				<label>Maximum temp: <%= @location.weather_data["main"]["temp"].round %>&#8457;</label></br>
+				<label>Humidity: <%= @location.weather_data["main"]["humidity"].round %>%</label></br>
+				<label>Pressure: <%= @location.weather_data["main"]["pressure"].round %> hpa</label></br>
 			</div>
 		</div>
 	<% else %>
